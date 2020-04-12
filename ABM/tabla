@@ -1,0 +1,16 @@
+create database AbmDemo;
+use AbmDemo;
+
+create table if not exists Persons (
+ID int(10) not null auto_increment,
+DNI varchar(10) not null,
+FirstName varchar(30) not null,
+LastName varchar(30) not null,
+Gender varchar(6),
+Discriminator varchar(30),
+HiringDate date,
+Area varchar(10),
+Seniority varchar(10),
+PRIMARY KEY (ID)
+);
+
