@@ -1,0 +1,117 @@
+﻿@{
+  ViewData["Title"] = "Employees CRUD";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+
+    <link href="/lib/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" />
+    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/lib/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" media="screen" />
+
+    <link href="/lib/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <script src="https://kit.fontawesome.com/bbccffbf4a.js" crossorigin="anonymous"></script>
+    @*<link href="/css/pages-icons.css" rel="stylesheet" type="text/css">*@
+
+    @RenderSection("Styles", required: false)
+
+    <link href="/css/pages-icons.css" rel="stylesheet" type="text/css">
+    <link class="main-stylesheet" href="/css/pages.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="fixed-header">
+    <!-- BEGIN SIDEBAR -->
+    <!-- BEGIN SIDEBPANEL-->
+    <nav class="page-sidebar" data-pages="sidebar">
+        <!-- BEGIN SIDEBAR MENU TOP TRAY CONTENT-->
+        <div class="sidebar-overlay-slide from-top" id="appMenu">
+        </div>
+        <!-- END SIDEBAR MENU TOP TRAY CONTENT-->
+        <!-- BEGIN SIDEBAR MENU HEADER-->
+        <!-- END SIDEBAR MENU HEADER-->
+        <!-- START SIDEBAR MENU -->
+        <div class="sidebar-menu">
+            <!-- BEGIN SIDEBAR MENU ITEMS-->
+            <partial name="_Menu.cshtml" />
+            <div class="clearfix"></div>
+        </div>
+        <!-- END SIDEBAR MENU -->
+    </nav>
+    <!-- END SIDEBAR -->
+    <!-- END SIDEBAR -->
+    <!-- START PAGE-CONTAINER -->
+    <div class="page-container">
+        <!-- START PAGE HEADER WRAPPER -->
+        <!-- START HEADER -->
+
+        <!-- END HEADER -->
+        <!-- END PAGE HEADER WRAPPER -->
+        <!-- START PAGE CONTENT WRAPPER -->
+        <div class="page-content-wrapper">
+            <!-- START PAGE CONTENT -->
+            <div class="content">
+                <!-- START JUMBOTRON -->
+                <div class="jumbotron" data-pages="parallax">
+                    <div class=" container-fluid container-fixed-lg sm-p-l-0 sm-p-r-0">
+                        <div class="inner">
+                            <!-- START BREADCRUMB -->
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                            </ol>
+                            <!-- END BREADCRUMB -->
+                        </div>
+                    </div>
+                </div>
+                <!-- END JUMBOTRON -->
+                <!-- START CONTAINER FLUID -->
+                    <!-- BEGIN PlACE PAGE CONTENT HERE -->
+                    <div class=" container-fluid   container-fixed-lg">
+                    @RenderBody()
+                    </div>
+                    <!-- END PLACE PAGE CONTENT HERE -->
+                <!-- END CONTAINER FLUID -->
+            </div>
+            <!-- END PAGE CONTENT -->
+            <!-- START FOOTER -->
+            <partial name="_Footer.cshtml" />
+            <!-- END FOOTER -->
+        </div>
+        <!-- END PAGE CONTENT WRAPPER -->
+    </div>
+    <!-- END PAGE CONTAINER -->
+    <!-- BEGIN VENDOR JS -->
+    <!-- BEGIN VENDOR JS -->
+    <script src="/lib/pace/pace.min.js" type="text/javascript"></script>
+    <script src="/lib/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="/lib/modernizr.custom.js" type="text/javascript"></script>
+    <script src="/lib/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="/lib/popper/umd/popper.min.js" type="text/javascript"></script>
+    <script src="/lib/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/lib/jquery/jquery-easy.js" type="text/javascript"></script>
+    <script src="/lib/jquery-ios-list/jquery.ioslist.min.js" type="text/javascript"></script>
+    <script src="/lib/jquery-actual/jquery.actual.min.js"></script>
+    <script src="/lib/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+   
+    @RenderSection("Scripts", required: false)
+    
+    <!-- END VENDOR JS -->
+    <!-- BEGIN CORE TEMPLATE JS -->
+    <script src="/js/pages.js" type="text/javascript"></script>
+    <!-- END CORE TEMPLATE JS -->
+    <!-- BEGIN PAGE LEVEL JS -->
+    <script src="/js/scripts.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL JS -->
+
+</body>
+</html>

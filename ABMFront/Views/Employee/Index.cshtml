@@ -1,0 +1,64 @@
+﻿@page
+@model ABMFront.ViewModels.EmployeeViewModel
+@section Styles{
+<link href="/lib/jquery-datatable/media/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="/lib/jquery-datatable/extensions/FixedColumns/css/dataTables.fixedColumns.min.css"/>
+<link media="screen" type="text/css" rel="stylesheet" href="/lib/datatables-responsive/css/datatables.responsive.css"/>
+}
+
+  <!-- START CONTAINER FLUID -->
+  <div class=" container-fluid   container-fixed-lg bg-white">
+    <!-- START card -->
+      <div class="card card-transparent">
+        <div class="card-header ">
+          <div class="pull-left">
+             <div class="col-xs-12">
+            <button class="btn btn-primary btn-block pull-right" data-target="#modalSlideLeft" data-toggle="modal">Create</button>
+            </div>
+            </div>
+
+          <div class="pull-right">
+            <div class="col-xs-12">
+              <input type="text" id="search-table" class="form-control pull-right" placeholder="Search">
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          </div>
+
+            <div class="card-body">
+              <table class="table table-hover demo-table-search table-responsive-block" id="employeesTable">
+                <thead>
+              <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>DNI</th>
+                <th>Gender</th>
+                <th>Area</th>
+                <th>Seniority</th>
+                <th>Hiring Date</th>
+                <th>Edit</th>
+              </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+            <!-- END card -->
+        </div>
+          <!-- END CONTAINER FLUID -->
+          <div class="modal fade slide-right" id="modalSlideLeft" tabindex="-1" role="dialog" aria-hidden="true">
+              <div class="modal-dialog modal-md">
+              <div class="modal-content-wrapper">
+                <partial name="_CreateEmployee.cshtml" /> 
+              </div>
+            </div>
+          </div>
+@section scripts{
+<script src="/lib/jquery-datatable/media/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="/lib/jquery-datatable/extensions/TableTools/js/dataTables.tableTools.min.js" type="text/javascript"></script>
+    <script src="/lib/jquery-datatable/media/js/dataTables.bootstrap.js" type="text/javascript"></script>
+    <script src="/lib/jquery-datatable/extensions/Bootstrap/jquery-datatable-bootstrap.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/lib/datatables-responsive/js/datatables.responsive.js"></script>
+    <script type="text/javascript" src="/lib/moment.min.js"></script>
+    <script type="text/javascript" src="/js/index-employees.js"></script>
+}

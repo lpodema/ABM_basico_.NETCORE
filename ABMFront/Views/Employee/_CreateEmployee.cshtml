@@ -1,0 +1,48 @@
+@model ABMFront.ViewModels.EmployeeViewModel            
+                
+<div class="modal-content">
+    <div class="card card-transparent">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="location.reload()"><i class="pg-close fs-40"></i>
+        </button>
+        <div class="container-xs-height full-height">
+            <div class="row-xs-height">
+                <div class="modal-body col-xs-height ">
+                    <div class="card-header "><h4>Create New Employee</h4>
+                    </div>
+                    <div class="card-body ">
+                        <form class="" role="form" method="post" id="partialForm">
+                            <div class="row">
+                                <div class="form-group form-group-default required">
+                                    <span asp-validation-for="FirstName"></span>
+                                    <label asp-for="FirstName"></label>
+                                    <input asp-for="FirstName" class="form-control"placeholder="ex: Juan" required=""/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group form-group-default required">
+                                    <span asp-validation-for="LastName"></span>
+                                    <label asp-for="LastName"></label>
+                                    <input asp-for="LastName" class="form-control"placeholder="ex: Perez" required=""/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group form-group-default required">
+                                    <span asp-validation-for="DNI"></span>
+                                    <label asp-for="DNI"></label>
+                                    <input asp-for="DNI" class="form-control" placeholder="ex: 11223344" required="">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-around">
+                            <button type="button" class="btn btn-primary " id="manySubmits">Create and Create another</button>
+                            <button type="button" class="btn btn-primary " id="submit">Create Employee</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

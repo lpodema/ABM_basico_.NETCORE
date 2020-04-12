@@ -1,0 +1,166 @@
+
+@model ABMFront.ViewModels.EmployeeViewModel
+
+  @section Styles{
+  <link href="/lib/select2/css/select2.min.css" rel="stylesheet" type="text/css" media="screen" />
+  <link href="/lib/switchery/css/switchery.min.css" rel="stylesheet" type="text/css" media="screen" />
+  <link href="/lib/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" type="text/css" media="screen">
+  <link href="/lib/bootstrap-tag/bootstrap-tagsinput.css" rel="stylesheet" type="text/css" />
+}
+
+<div class ="row">
+  <div class="col-lg-12">
+    <form class="" role="form" method="post">
+      <div class="col-lg-4 pull-left">
+        <div class="card card-default">
+          <div class="card-header ">
+            <div class="card-title text-center">Personal Information</div>
+          </div>
+          <div class="card-body">
+            <div class="form-group form-group-default">
+              <input asp-for="ID" class="form-control"placeholder="Id" required=""/>
+              <span asp-validation-for="FirstName"></span>
+              <label asp-for="FirstName"></label>
+              <input asp-for="FirstName" class="form-control"placeholder="First Name" required=""/>
+            </div>
+            <div class="form-group form-group-default">
+                <span asp-validation-for="LastName"></span>
+                <label asp-for="LastName"></label>
+                <input asp-for="LastName" class="form-control"placeholder="LastName" required=""/>
+            </div>
+            <div class="form-group form-group-default">
+              <span asp-validation-for="DNI"></span>
+              <label asp-for="DNI"></label>
+              <input asp-for="DNI" class="form-control" placeholder="ex: DNI" required="">
+            </div>
+            <div class="form-group form-group-default">
+                <span class="help">Gender</span>
+              <div class="radio radio-success">
+                @foreach (string _gender in
+                ABMFront.ViewModels.EnumGender.GetNames(typeof(ABMFront.ViewModels.EnumGender))){
+                <input asp-for="Gender"
+                  type="radio"
+                  value="@_gender"
+                  name="Gender"
+                  id="@_gender"
+                />
+                <label for="@_gender">@_gender</label>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 pull-right">
+        <div class="card card-default">
+          <div class="card-header ">
+            <div class="card-title text-center">Work Information</div>
+          </div>
+          <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group form-group-default form-group-default-select2">
+                    <label class="">Area</label>
+                    <select  asp-for="Area" class="full-width" data-placeholder="Area" data-init-plugin="select2" name="Area">
+                      <optgroup label="Area" asp-for="Area">
+                          @foreach (string _area in
+                          ABMFront.ViewModels.EnumArea.GetNames(typeof(ABMFront.ViewModels.EnumArea))){
+                          <option value="@_area">@_area</option>
+                          }
+                      </optgroup>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group form-group-default form-group-default-select2">
+                    <label class="">Seniority</label>
+                    <select asp-for="Seniority" class="full-width" data-placeholder="Seniority" data-init-plugin="select2" name="Seniority">
+                      <optgroup label="Seniority">
+                    @foreach (string _seniority in
+                    ABMFront.ViewModels.EnumSeniority.GetNames(typeof(ABMFront.ViewModels.EnumSeniority))){
+                          <option value="@_seniority">@_seniority</option>
+                    }
+                        </optgroup>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group form-group-default input-group">
+                    <div class="form-input-group">
+                        <label>Hiring Date</label>
+                      <input asp-for="HiringDate" name="HiringDate" class="form-control" placeholder="ex: 2019-04-11" id="HiringDate">
+                    </div>
+                    <div class="input-group-append ">
+                      <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 pull-right">
+        <div class="card card-default">
+          <div class="card-body">
+              <div class="row d-flex justify-content-around">
+              <button class="btn btn-primary btn-cons " type="button" id="save">Save Changes</button>
+              <button class="btn btn-danger btn-cons " type="button" id="delete">Delete Employee</button>
+              <button class="btn btn-success btn-cons " type="button" id="back" onclick="location.href='@Url.Action("Index", "Employee")'">Go Back</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+      </div>
+  </div>
+
+
+
+@section scripts{
+  <script src="/lib/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+  <script src="/lib/handlebars/handlebars-v4.0.5.js"></script>
+  <script src="/lib/select2/js/select2.min.js"></script>
+  <script src="/lib/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js" type="text/javascript"></script>
+  <script src="/lib/jquery-validation/js/jquery.validate.min.js"></script>
+  <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+    $(document).ready(function() {
+  //Multiselect - Select2 plug-in
+    $("#multi").select2();
+    
+    $('#HiringDate').datepicker({ format: 'yyyy-mm-dd', language: 'en'});
+    $('#HiringDate').val(
+    $('#HiringDate').datepicker("getFormattedDate")
+    );
+
+    $(function () {
+  $("#save").on("click", function (evt) {
+    evt.preventDefault();
+    $.post("Employee/EditEmployee", $("form").serialize(), function () {
+    window.location.href='@Url.Action("Index", "Employee")';
+    }
+    );
+  });
+});
+
+$(function () {
+  $("#delete").on("click", function (evt) {
+    evt.preventDefault();
+    $.post("Employee/DeleteEmployee", $("form").serialize(), function () {
+    window.location.href='@Url.Action("Index", "Employee")';
+    });
+  });
+});
+  });
+</script>
+}
